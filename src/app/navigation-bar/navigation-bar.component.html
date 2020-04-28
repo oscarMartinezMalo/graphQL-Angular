@@ -1,0 +1,23 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+
+    <mat-toolbar class="side-nav-custom" style="background-color: #673ab7;" color="primary">Add New Picture</mat-toolbar>
+
+    <mat-nav-list fxLayout="column" fxLayoutAlign="space-between center">
+      <app-picture-form style="margin: 5px;"></app-picture-form>
+      <app-author-form style="margin: 5px;"></app-author-form>
+    </mat-nav-list>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>graphQL-Angular</span>
+    </mat-toolbar>
+    <app-picture-list></app-picture-list>
+  </mat-sidenav-content>
+</mat-sidenav-container>

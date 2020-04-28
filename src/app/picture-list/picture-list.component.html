@@ -1,0 +1,9 @@
+
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="space-around center" class="card-margins"
+ fxLayoutGap="30px">
+  <mat-card *ngFor="let picture of pictures$ | async">
+    <img mat-card-image class="picture-card" [src]="picture.imageUrl"
+      alt="Picture">
+      <p>{{picture.title}}</p>
+  </mat-card>
+</div>
