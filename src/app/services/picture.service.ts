@@ -51,7 +51,11 @@ export class PictureService {
         title,
         imageUrl,
         genre,
-        authorId
+        authorId,
+        author{
+          name,
+          lastName
+        }
       }
     }
     `;
@@ -62,6 +66,27 @@ export class PictureService {
     }).subscribe(({ data }) => {
       this.pictures.push(data['addPicture']);
       this.picturesSubject$.next(this.pictures);
+    }, (error) => {
+      console.log('there was an error sending the query', error);
+    });
+  }
+
+  deletePicture( id: string) {
+    const DELETE_PICTURE = gql`
+    mutation submitRepository ($id: String!)  {
+      deletePicture(id: $id){
+        _id
+      }
+    }
+    `;
+
+    this.apollo.mutate({
+      mutation: DELETE_PICTURE,
+      variables: { id }
+    }).subscribe(({ data }) => {
+      const deletedIndex = this.pictures.findIndex(pic => pic._id === data['deletePicture']._id);
+      this.pictures.splice( deletedIndex, 1 );
+      this.picturesSubject$.next( this.pictures );
     }, (error) => {
       console.log('there was an error sending the query', error);
     });
