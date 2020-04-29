@@ -1,10 +1,16 @@
+.list-container {
+  padding-top: 20px;
+}
+
 .mat-card-image {
-  max-width: 400px;
+  max-width: 560px;
   max-height: 350px;
   margin-top: 0px !important;
 }
 
 mat-card {
-  margin-bottom: 15x;
+  padding: 0px 20px 20px 20px !important;
+  margin-bottom: 15px;
   box-shadow: none !important;
 }
+

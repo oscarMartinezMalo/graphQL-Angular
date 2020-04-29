@@ -31,3 +31,9 @@ mat-nav-list.mat-nav-list.mat-list-base {
 .sidenav[_ngcontent-uso-c1] .mat-toolbar[_ngcontent-uso-c1] {
     background: none !important;
 }
+
+.mat-drawer-inner-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -17,5 +17,12 @@
 }
 
 .side-nav-custom {
-  position:absolute;
+  position:absolute !important;
 }
+
+@media only screen and (max-width: 600px) {
+  mat-nav-list {
+  margin-top: 170px;
+}
+}
+

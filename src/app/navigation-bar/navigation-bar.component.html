@@ -1,10 +1,10 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false"  fxLayoutAlign="center center">
 
     <mat-toolbar class="side-nav-custom" style="background-color: #673ab7;" color="primary">Add New Picture</mat-toolbar>
 
-    <mat-nav-list fxLayout="column" fxLayoutAlign="space-between center">
+    <mat-nav-list fxLayout="column">
       <app-picture-form style="margin: 5px;"></app-picture-form>
       <app-author-form style="margin: 5px;"></app-author-form>
     </mat-nav-list>

@@ -25,7 +25,10 @@ export class PictureService {
         _id,
         title,
         imageUrl,
-        authorId
+        author {
+          name,
+          lastName
+         }
       }
     }`;
 
