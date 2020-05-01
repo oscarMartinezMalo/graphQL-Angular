@@ -1,0 +1,19 @@
+<!-- <mat-card *ngFor="let picture of pictures"> -->
+<mat-card *ngIf="picture">
+
+  <div class="icon-container edit">
+    <button mat-icon-button aria-label="Example icon button with a home icon" (click)="onUpdate(picture._id)">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
+
+  <div class="icon-container delete">
+    <button mat-icon-button aria-label="Example icon button with a home icon" (click)="onDelete(picture._id)">
+      <mat-icon>delete_forever</mat-icon>
+    </button>
+  </div>
+
+  <img mat-card-image class="picture-card" [src]="picture.imageUrl" alt="Picture">
+  <mat-card-title>{{picture.title | titlecase}}</mat-card-title>
+  <mat-card-subtitle>{{picture['author'].name | titlecase}} {{picture['author'].lastName | titlecase}}</mat-card-subtitle>
+</mat-card>

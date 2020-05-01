@@ -18,7 +18,4 @@ export class PictureListComponent implements OnInit {
     this.pictureService.getpictures();
   }
 
-  onDelete(pictureId: string) {
-    this.pictureService.deletePicture( pictureId);
-  }
 }

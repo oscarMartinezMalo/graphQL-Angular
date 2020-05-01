@@ -1,0 +1,42 @@
+.mat-card-image {
+  max-width: 560px;
+  max-height: 350px;
+  margin-top: 0px !important;
+}
+
+mat-card {
+  padding: 0px 16px 16px 16px !important;
+  margin-bottom: 15px;
+  box-shadow: none !important;
+
+  &:hover {
+    .icon-container {
+      opacity: 1;
+      transform: translate(0px, 0px);
+    }
+  }
+}
+
+.mat-card-title {
+  font-size: 14px;
+}
+
+.mat-icon {
+  color: white;
+}
+
+.icon-container {
+  opacity: 0;
+  transform: translate(0px, -25px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+
+  &.edit {
+    position: absolute;
+  }
+
+  &.delete {
+    position: absolute;
+    left: 100%;
+    margin-left: -55px;
+  }
+}

@@ -23,6 +23,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { PictureListComponent } from './picture-list/picture-list.component';
+import { PictureCardComponent } from './picture-card/picture-card.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { PictureListComponent } from './picture-list/picture-list.component';
     PictureFormComponent,
     AuthorFormComponent,
     NavigationBarComponent,
-    PictureListComponent
+    PictureListComponent,
+    PictureCardComponent
   ],
   imports: [
     BrowserModule,
