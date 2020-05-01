@@ -2,9 +2,10 @@
 <mat-card *ngIf="picture">
 
   <div class="icon-container edit">
-    <button mat-icon-button aria-label="Example icon button with a home icon" (click)="onUpdate(picture._id)">
+    <a mat-icon-button
+     [routerLink]="['/pictures/', picture._id]">
       <mat-icon>edit</mat-icon>
-    </button>
+  </a>
   </div>
 
   <div class="icon-container delete">

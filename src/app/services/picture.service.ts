@@ -16,9 +16,9 @@ export class PictureService {
 
   constructor(
     private apollo: Apollo
-    ) { }
+  ) { }
 
-  getpictures() {
+  getPictures() {
     const GET_PICTURES = gql`
     {
       pictures{
@@ -41,6 +41,26 @@ export class PictureService {
         this.pictures = resp;
         this.picturesSubject$.next(this.pictures);
       });
+  }
+
+  getPictureById(id: string) {
+    const GET_PICTURES_BY_ID = gql`
+    query submitRepository($id: String!) {
+     picture(id: $id) {
+       _id,
+        title,
+        imageUrl,
+        genre,
+        authorId
+      }
+    }`;
+
+    return  this.apollo
+      .watchQuery({
+        query: GET_PICTURES_BY_ID,
+        variables: { id },
+      })
+      .valueChanges.pipe(map(result => result.data && result.data['picture']));
   }
 
   createPicture(title: string, imageUrl: string, genre: string, authorId: string) {
@@ -71,7 +91,7 @@ export class PictureService {
     });
   }
 
-  deletePicture( id: string) {
+  deletePicture(id: string) {
     const DELETE_PICTURE = gql`
     mutation submitRepository ($id: String!)  {
       deletePicture(id: $id){
@@ -85,8 +105,8 @@ export class PictureService {
       variables: { id }
     }).subscribe(({ data }) => {
       const deletedIndex = this.pictures.findIndex(pic => pic._id === data['deletePicture']._id);
-      this.pictures.splice( deletedIndex, 1 );
-      this.picturesSubject$.next( this.pictures );
+      this.pictures.splice(deletedIndex, 1);
+      this.picturesSubject$.next(this.pictures);
     }, (error) => {
       console.log('there was an error sending the query', error);
     });

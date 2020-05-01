@@ -15,7 +15,7 @@ export class PictureListComponent implements OnInit {
 
   ngOnInit(): void {
     this.pictures$ = this.pictureService.pictures$;
-    this.pictureService.getpictures();
+    this.pictureService.getPictures();
   }
 
 }

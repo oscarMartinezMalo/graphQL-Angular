@@ -24,6 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { PictureListComponent } from './picture-list/picture-list.component';
 import { PictureCardComponent } from './picture-card/picture-card.component';
+import { PictureEditComponent } from './picture-edit/picture-edit.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { PictureCardComponent } from './picture-card/picture-card.component';
     AuthorFormComponent,
     NavigationBarComponent,
     PictureListComponent,
-    PictureCardComponent
+    PictureCardComponent,
+    PictureEditComponent
   ],
   imports: [
     BrowserModule,
