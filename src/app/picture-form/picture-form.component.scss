@@ -1,0 +1,20 @@
+.component-container {
+    height: calc(100% - 64px);
+}
+
+.example-form {
+    padding: 0px 20px 0px 20px;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .card-form {
+      width: 100%;
+      max-width: 500px;
+  }
+
+  mat-card-actions.mat-card-actions {
+      width: 100%;
+  }

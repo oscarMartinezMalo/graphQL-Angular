@@ -91,6 +91,35 @@ export class PictureService {
     });
   }
 
+  updatePicture( id: string, title: string, imageUrl: string, genre: string, authorId: string ) {
+    const UPDATE_PICTURE = gql`
+    mutation submitRepository ($id: String!, $title: String!, $imageUrl: String!, $genre: String!, $authorId: String!) {
+      updatePicture(id: $id, title: $title, imageUrl: $imageUrl, genre: $genre, authorId: $authorId) {
+        _id,
+        title,
+        imageUrl,
+        genre,
+        authorId,
+        author{
+          name,
+          lastName
+        }
+      }
+    }
+    `;
+
+    this.apollo.mutate({
+      mutation: UPDATE_PICTURE,
+      variables: { id, title, imageUrl, genre, authorId }
+    }).subscribe(({ data }) => {
+      console.log( data );
+      // this.pictures.push(data['addPicture']);
+      // this.picturesSubject$.next(this.pictures);
+    }, (error) => {
+      console.log('There was an error sending the query', error);
+    });
+  }
+
   deletePicture(id: string) {
     const DELETE_PICTURE = gql`
     mutation submitRepository ($id: String!)  {

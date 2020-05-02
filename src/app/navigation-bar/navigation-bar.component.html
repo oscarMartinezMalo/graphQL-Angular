@@ -1,5 +1,5 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+  <!-- <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
 
     <mat-toolbar class="side-nav-custom" style="background-color: #673ab7;" color="primary">Add New Picture</mat-toolbar>
@@ -9,14 +9,22 @@
       <app-author-form style="margin: 5px;"></app-author-form>
     </mat-nav-list>
 
-  </mat-sidenav>
+  </mat-sidenav> -->
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+      <!-- <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>graphQL-Angular</span>
+      </button> -->
+      <a aria-hidden="false" [routerLink]="['/']" style="color: white;">
+        <mat-icon class="example-icon">home</mat-icon>
+      </a>
+
+      <span class="example-spacer"></span>
+
+      <a aria-hidden="false" [routerLink]="['/pictures/new']" style="color: white;">
+        <mat-icon class="example-icon">add_circle</mat-icon>
+      </a>
     </mat-toolbar>
     <ng-content></ng-content>
   </mat-sidenav-content>

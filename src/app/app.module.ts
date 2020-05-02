@@ -24,7 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { PictureListComponent } from './picture-list/picture-list.component';
 import { PictureCardComponent } from './picture-card/picture-card.component';
-import { PictureEditComponent } from './picture-edit/picture-edit.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -33,8 +33,10 @@ import { PictureEditComponent } from './picture-edit/picture-edit.component';
     AuthorFormComponent,
     NavigationBarComponent,
     PictureListComponent,
-    PictureCardComponent,
-    PictureEditComponent
+    PictureCardComponent
+  ],
+  entryComponents: [
+    AuthorFormComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,8 @@ import { PictureEditComponent } from './picture-edit/picture-edit.component';
     LayoutModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule
   ],
   providers: [AuthorService],
   bootstrap: [AppComponent]
