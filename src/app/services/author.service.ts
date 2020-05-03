@@ -25,7 +25,8 @@ export class AuthorService {
       authors{
         _id,
         name,
-        lastName
+        lastName,
+        facePictureUrl
       }
     }`;
 
@@ -40,10 +41,10 @@ export class AuthorService {
       });
   }
 
-  createAuthor(name: string, lastName: string) {
+  createAuthor(name: string, lastName: string, facePictureUrl: string) {
     const CREATE_AUTHOR = gql`
-    mutation submitRepository ($name: String!, $lastName: String!) {
-      addAuthor(name: $name, lastName: $lastName) {
+    mutation submitRepository ($name: String!, $lastName: String!, $facePictureUrl: String!) {
+      addAuthor(name: $name, lastName: $lastName, facePictureUrl: $facePictureUrl) {
         _id,
         name,
         lastName
@@ -53,7 +54,7 @@ export class AuthorService {
 
     this.apollo.mutate({
       mutation: CREATE_AUTHOR,
-      variables: { name, lastName }
+      variables: { name, lastName, facePictureUrl }
     }).subscribe(({ data }) => {
       this.authors.push(data['addAuthor']);
       this.authorsSubject$.next(this.authors);
@@ -67,7 +68,8 @@ export class AuthorService {
     query submitRepository($id: String!) {
       picturesByAuthor(id: $id) {
         name,
-        lastName
+        lastName,
+        facePictureUrl,
         pictures{
           title,
           imageUrl

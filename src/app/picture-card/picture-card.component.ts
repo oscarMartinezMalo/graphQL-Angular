@@ -44,8 +44,11 @@ export class PictureCardComponent implements OnInit {
   }
 
   getAuthorFullName() {
-    if (this.picture['author'])
+    if (this.picture['author']){
+      console.log(this.picture['author']);
       return `${this.picture['author'].name}  ${this.picture['author'].lastName}`;
+    }
+
 
     if (this.author)
       return `${this.author.name} ${this.author.lastName}`;

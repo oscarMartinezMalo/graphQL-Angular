@@ -1,7 +1,9 @@
-<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center start" fxLayoutGap="40px" class="author-section">
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center start" fxLayoutGap="40px" class="author-section" 
+*ngIf="(author$ | async) as author">
     <div fxLayout="column" fxLayoutAlign="center center" style="width: 100%;">
-        <div mat-card-avatar class="author-face-image" [routerLink]="['/author-detail']"></div>
-        <h1 class="author-name">Katherine Llosa Castano</h1>
+        <div mat-card-avatar class="author-face-image" [routerLink]="['/author-detail']"
+        [style.backgroundImage]="'url(' + author.facePictureUrl +')'"></div>
+        <h1 class="author-name"> {{author.name}} {{author.lastName}}</h1>
         <p class="author-description">Photographer</p>
     </div>
 </div>

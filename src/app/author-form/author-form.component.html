@@ -16,6 +16,11 @@
         <input matInput type="text"  placeholder="Last Name" formControlName="lastName">
       </mat-form-field>
 
+      <mat-form-field class="example-full-width">
+        <mat-label> Author Picture Url</mat-label>
+        <input matInput type="text"  placeholder="Profile Picture Url" formControlName="facePictureUrl">
+      </mat-form-field>
+
       <mat-card-actions>
         <button type="button" mat-stroked-button color="primary" (click)="onClear()"> Clear Form</button>
         <button type="submit" mat-raised-button color="primary" [disabled]="!authorForm.valid" style="margin-right: 0px;">

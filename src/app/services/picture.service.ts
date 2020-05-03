@@ -28,7 +28,8 @@ export class PictureService {
         authorId,
         author {
           name,
-          lastName
+          lastName,
+          facePictureUrl
          }
       }
     }`;
@@ -75,7 +76,8 @@ export class PictureService {
         authorId,
         author{
           name,
-          lastName
+          lastName,
+          facePictureUrl
         }
       }
     }

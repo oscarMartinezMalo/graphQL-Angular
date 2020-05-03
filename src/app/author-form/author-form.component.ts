@@ -14,6 +14,7 @@ export class AuthorFormComponent implements OnInit {
   authorForm = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
     lastName: ['', [Validators.required, Validators.minLength(3)]],
+    facePictureUrl: ['',   [Validators.required, Validators.minLength(3)]]
   });
 
   constructor(
@@ -29,7 +30,8 @@ export class AuthorFormComponent implements OnInit {
     if (this.authorForm.valid) {
       const name = this.authorForm.get('name').value;
       const lastName = this.authorForm.get('lastName').value;
-      this.authService.createAuthor( name, lastName );
+      const facePictureUrl = this.authorForm.get('facePictureUrl').value;
+      this.authService.createAuthor( name, lastName, facePictureUrl );
 
       this.authorForm.reset();
     }
