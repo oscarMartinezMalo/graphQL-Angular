@@ -1,0 +1,39 @@
+
+.author-section {
+  padding: 5%;
+}
+
+.author-face-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+
+  .author-name {
+    font-size: 40px;
+    font-weight: 700;    
+    margin-bottom: 15px;
+  }
+  
+  .author-description {
+    font-size: 20px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .author-face-image {
+      height: 100px;
+      width: 100px;
+    }
+
+    .author-name  {
+      font-size: 20px !important;
+      margin-bottom: 0px;
+    }
+
+    .author-description {
+      font-size: 12px;
+    }
+  }

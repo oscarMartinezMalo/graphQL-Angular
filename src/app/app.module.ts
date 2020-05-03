@@ -25,6 +25,8 @@ import { MatListModule } from '@angular/material/list';
 import { PictureListComponent } from './picture-list/picture-list.component';
 import { PictureCardComponent } from './picture-card/picture-card.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { AuthorDetailComponent } from './author-detail/author-detail.component';
 
 @NgModule({
   declarations: [
@@ -33,10 +35,13 @@ import {MatDialogModule} from '@angular/material/dialog';
     AuthorFormComponent,
     NavigationBarComponent,
     PictureListComponent,
-    PictureCardComponent
+    PictureCardComponent,
+    ConfirmationDialogComponent,
+    AuthorDetailComponent
   ],
   entryComponents: [
-    AuthorFormComponent
+    AuthorFormComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,

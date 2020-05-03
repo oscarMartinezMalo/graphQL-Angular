@@ -3,6 +3,8 @@ import { PictureService } from '../services/picture.service';
 import { Picture } from '../models/picture.model';
 import { AuthorService } from '../services/author.service';
 import { Author } from '../models/author.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-picture-card',
@@ -16,13 +18,25 @@ export class PictureCardComponent implements OnInit {
 
   constructor(
     private pictureService: PictureService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
   }
 
   onDelete(pictureId: string) {
-    this.pictureService.deletePicture(pictureId);
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '350px',
+      data: "Do you confirm the deletion of this Picture?"
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.pictureService.deletePicture(pictureId);
+      }
+    });
+
+
   }
 
   onUpdate(pictureId: string) {
@@ -36,5 +50,4 @@ export class PictureCardComponent implements OnInit {
     if (this.author)
       return `${this.author.name} ${this.author.lastName}`;
   }
-
 }

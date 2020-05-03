@@ -6,7 +6,7 @@
         <mat-icon>edit</mat-icon>
       </a>
     </div>
-  
+
     <div class="icon-container delete">
       <button mat-icon-button aria-label="Example icon button with a home icon" (click)="onDelete(picture._id)">
         <mat-icon>delete_forever</mat-icon>
@@ -15,9 +15,9 @@
   </div>
 
   <img mat-card-image class="picture-card" [src]="picture.imageUrl" alt="Picture">
-  <mat-card-title>{{picture.title | titlecase}}</mat-card-title>
-
-  <mat-card-subtitle>
-    {{getAuthorFullName()}}
-  </mat-card-subtitle>
+  <mat-card-header> 
+    <div mat-card-avatar class="example-header-image pointer"  [routerLink]="['/author-detail', picture.authorId]" ></div>
+    <mat-card-title>{{picture.title | titlecase}}</mat-card-title>
+    <mat-card-subtitle [routerLink]="['/author-detail', picture.authorId]" class="pointer"> {{getAuthorFullName()}} </mat-card-subtitle>
+  </mat-card-header>
 </mat-card>

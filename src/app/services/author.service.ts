@@ -62,4 +62,24 @@ export class AuthorService {
     });
   }
 
+  getPicturesByAuthorId(id: string) {
+    const GET_PICTURES_BY_author_ID = gql`
+    query submitRepository($id: String!) {
+      picturesByAuthor(id: $id) {
+        name,
+        lastName
+        pictures{
+          title,
+          imageUrl
+        }
+      }
+    }`;
+
+    return this.apollo
+      .watchQuery({
+        query: GET_PICTURES_BY_author_ID,
+        variables: { id },
+      })
+      .valueChanges.pipe(map(result => result.data && result.data['picturesByAuthor']));
+  }
 }
