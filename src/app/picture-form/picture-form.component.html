@@ -3,11 +3,11 @@
   <mat-card class="card-form">
     <mat-toolbar color="primary" style="margin-bottom: 20px;" fxLayout="row" fxLayoutAlign="center center">
       <span *ngIf="idUrlparameter; else loading">Edit Picture</span>
-      <ng-template #loading>Create Picture</ng-template>
+      <ng-template #loading>Add Picture</ng-template>
     </mat-toolbar>
 
     <form class="example-form" [formGroup]="pictureForm" (ngSubmit)="onSubmit()" fxLayout="column"
-      fxLayoutAlign="center center">
+      fxLayoutAlign="center center" style="margin-top: 100px;">
       <mat-form-field class="example-full-width">
         <mat-label>Title</mat-label>
         <input matInput type="text" placeholder="Title" formControlName="title">

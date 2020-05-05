@@ -1,31 +1,15 @@
 <mat-sidenav-container>
-  <!-- <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
-
-    <mat-toolbar class="side-nav-custom" style="background-color: #673ab7;" color="primary">Add New Picture</mat-toolbar>
-
-    <mat-nav-list fxLayout="column">
-      <app-picture-form style="margin: 5px;"></app-picture-form>
-      <app-author-form style="margin: 5px;"></app-author-form>
-    </mat-nav-list>
-
-  </mat-sidenav> -->
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <!-- <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button> -->
-      <div class="margin-container"  fxLayout="row" fxLayoutAlign="space-between center" style="width:100%;">
-        <a aria-hidden="false" [routerLink]="['/']" style="color: white;">
-          <mat-icon class="example-icon">home</mat-icon>
+    <mat-toolbar [@openClose]="toolbarColor ? 'show' : 'hide'">
+      <div class="margin-container" fxLayout="row" fxLayoutAlign="space-between center" style="width:100%;">
+        <a aria-hidden="false" [routerLink]="['/']" style="color: white;" class="logo">
         </a>
 
-        <a mat-flat-button color="accent"  [routerLink]="['/pictures/new']">Add Picture</a>
+        <a mat-flat-button color="accent" [routerLink]="['/pictures/new']" style="width: 140px;">Add Picture</a>
       </div>
     </mat-toolbar>
-
-    <div  class="router-content">
+ 
+    <div class="router-content" >
       <ng-content></ng-content>
     </div>
   </mat-sidenav-content>

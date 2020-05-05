@@ -10,10 +10,15 @@
   background: inherit;
 }
 
-.mat-toolbar.mat-primary {
-  position: sticky;
+.mat-toolbar {
+  position: fixed;
   top: 0;
   z-index: 1;
+  background-color: transparent;
+}
+
+.toolbar-show {
+  background-color: grey;
 }
 
 .side-nav-custom {
@@ -31,6 +36,14 @@
 
 .mat-drawer-container {
   height: 100%;
+}
+
+.logo {
+  height: 40px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../../assets/icon.svg');
 }
 
 @media only screen and (max-width: 600px) {

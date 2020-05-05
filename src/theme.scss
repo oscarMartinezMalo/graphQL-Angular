@@ -2,7 +2,7 @@
 @include mat-core();
 
 //Define a custom theme
-$app-primary: mat-palette($mat-blue-grey, 700);
+$app-primary: mat-palette($mat-grey, 700);
 $app-accent: mat-palette($mat-green, 600);
 $app-warn: mat-palette($mat-red, 700);
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { PictureService } from '../services/picture.service';
 import { Picture } from '../models/picture.model';
 
