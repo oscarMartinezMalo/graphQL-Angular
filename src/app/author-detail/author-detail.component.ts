@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class AuthorDetailComponent implements OnInit {
 
   idUrlparameter;
-  author$;
+  author;
 
   constructor(
     private authorService: AuthorService,
@@ -19,8 +19,8 @@ export class AuthorDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.idUrlparameter = this.route.snapshot.paramMap.get('id');
-    this.author$ = this.authorService.getPicturesByAuthorId( this.idUrlparameter);
-    
+    this.authorService.getPicturesByAuthorId( this.idUrlparameter).
+    subscribe(author => this.author = author);
     // Get pictures by author ID
   }
 

@@ -47,7 +47,8 @@ export class AuthorService {
       addAuthor(name: $name, lastName: $lastName, facePictureUrl: $facePictureUrl) {
         _id,
         name,
-        lastName
+        lastName,
+        facePictureUrl
       }
     }
     `;

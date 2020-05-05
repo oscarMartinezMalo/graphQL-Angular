@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="space-evenly center" class="component-container"
+<div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="space-evenly center" class="margin-container component-container"
   fxLayoutGap="10px">
   <mat-card class="card-form">
     <mat-toolbar color="primary" style="margin-bottom: 20px;" fxLayout="row" fxLayoutAlign="center center">
@@ -37,7 +37,7 @@
 
         <div>
           <button type="button" mat-stroked-button color="primary" (click)="openDialog()">Add Author</button>
-          <button type="submit" mat-raised-button color="primary" [disabled]="!pictureForm.valid"
+          <button type="submit" mat-raised-button color="accent" [disabled]="!pictureForm.valid"
             style="margin-right: 0px;">
             <span *ngIf="idUrlparameter; else loading">Edit Picture</span>
             <ng-template #loading>Add Picture</ng-template>

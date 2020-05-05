@@ -1,11 +1,22 @@
-<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center start" fxLayoutGap="40px" class="author-section" 
-*ngIf="(author$ | async) as author">
-    <div fxLayout="column" fxLayoutAlign="center center" style="width: 100%;">
-        <div mat-card-avatar class="author-face-image" [routerLink]="['/author-detail']"
-        [style.backgroundImage]="'url(' + author.facePictureUrl +')'"></div>
-        <h1 class="author-name"> {{author.name}} {{author.lastName}}</h1>
-        <p class="author-description">Photographer</p>
+<div class="margin-container">
+    <div *ngIf="author">
+
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center start" fxLayoutGap="40px" class="author-section">
+            <div fxLayout="column" fxLayoutAlign="center center" style="width: 100%;">
+                <div mat-card-avatar class="author-face-image" [routerLink]="['/author-detail']"
+                    [style.backgroundImage]="'url(' + author.facePictureUrl +')'"></div>
+                <h1 class="author-name"> {{author.name}} {{author.lastName}}</h1>
+                <p class="author-description">Photographer</p>
+            </div>
+        </div>
+
+        <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="space-around center" class="list-container"
+            fxLayoutGap="10px">
+
+            <div *ngFor="let picture of author.pictures">
+                <app-picture-card [picture]="picture" [showProfilePic]="false"></app-picture-card>
+            </div>
+
+        </div>
     </div>
 </div>
-
-<app-picture-list></app-picture-list>

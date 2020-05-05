@@ -1,5 +1,4 @@
 <mat-card *ngIf="picture.imageUrl">
-
   <div *ngIf="showEditSection">
     <div class="icon-container edit">
       <a mat-icon-button [routerLink]="['/pictures/', picture._id]">
@@ -15,10 +14,14 @@
   </div>
 
   <img mat-card-image class="picture-card" [src]="picture.imageUrl" alt="Picture">
+
   <mat-card-header> 
     <div mat-card-avatar class="example-header-image pointer"  [routerLink]="['/author-detail', picture.authorId]"
-    [style.backgroundImage]="picture['author'] ? 'url(' + picture['author'].facePictureUrl +')' : 'url(' + author.facePictureUrl +')' "></div>
+    *ngIf="showProfilePic"
+    [style.backgroundImage]="picture['author'] ? 'url(' + picture['author']?.facePictureUrl +')' : 'url(' + author?.facePictureUrl +')' "></div>
+
     <mat-card-title>{{picture.title | titlecase}}</mat-card-title>
+
     <mat-card-subtitle [routerLink]="['/author-detail', picture.authorId]" class="pointer"> {{getAuthorFullName()}} </mat-card-subtitle>
   </mat-card-header>
 </mat-card>

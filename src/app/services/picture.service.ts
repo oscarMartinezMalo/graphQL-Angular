@@ -115,7 +115,6 @@ export class PictureService {
       mutation: UPDATE_PICTURE,
       variables: { id, title, imageUrl, genre, authorId }
     }).subscribe(({ data }) => {
-      console.log( data );
       // this.pictures.push(data['addPicture']);
       // this.picturesSubject$.next(this.pictures);
     }, (error) => {

@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
 
 html,
 body {
@@ -36,4 +36,24 @@ mat-nav-list.mat-nav-list.mat-list-base {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.router-content{
+  height: 100%;
+}
+
+.margin-container {
+  margin-right: 10%;
+  margin-left: 10%;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  background-color: white !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .margin-container {
+    margin-right: 1%;
+    margin-left: 1%;
+  }
 }

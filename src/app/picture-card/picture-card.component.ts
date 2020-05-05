@@ -15,6 +15,7 @@ export class PictureCardComponent implements OnInit {
   @Input() public picture: Picture;
   @Input() public author: Author;
   @Input() public showEditSection: boolean = true;
+  @Input() public showProfilePic:boolean = true;
 
   constructor(
     private pictureService: PictureService,
@@ -45,7 +46,6 @@ export class PictureCardComponent implements OnInit {
 
   getAuthorFullName() {
     if (this.picture['author']){
-      console.log(this.picture['author']);
       return `${this.picture['author'].name}  ${this.picture['author'].lastName}`;
     }
 

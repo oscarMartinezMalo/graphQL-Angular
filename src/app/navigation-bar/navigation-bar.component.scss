@@ -20,13 +20,6 @@
   position:absolute !important;
 }
 
-@media only screen and (max-width: 600px) {
-  mat-nav-list {
-    margin-top: 170px;
-  }
-}
-
-
 .example-icon {
   padding: 0 14px;
   font-size: 35px;
@@ -34,4 +27,14 @@
 
 .example-spacer {
   flex: 1 1 auto;
+}
+
+.mat-drawer-container {
+  height: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  mat-nav-list {
+    margin-top: 170px;
+  }
 }

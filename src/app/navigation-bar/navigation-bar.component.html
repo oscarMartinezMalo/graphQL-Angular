@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container>
   <!-- <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
 
@@ -16,16 +16,17 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button> -->
-      <a aria-hidden="false" [routerLink]="['/']" style="color: white;">
-        <mat-icon class="example-icon">home</mat-icon>
-      </a>
+      <div class="margin-container"  fxLayout="row" fxLayoutAlign="space-between center" style="width:100%;">
+        <a aria-hidden="false" [routerLink]="['/']" style="color: white;">
+          <mat-icon class="example-icon">home</mat-icon>
+        </a>
 
-      <span class="example-spacer"></span>
-
-      <a aria-hidden="false" [routerLink]="['/pictures/new']" style="color: white;">
-        <mat-icon class="example-icon">add_circle</mat-icon>
-      </a>
+        <a mat-flat-button color="accent"  [routerLink]="['/pictures/new']">Add Picture</a>
+      </div>
     </mat-toolbar>
-    <ng-content></ng-content>
+
+    <div  class="router-content">
+      <ng-content></ng-content>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
