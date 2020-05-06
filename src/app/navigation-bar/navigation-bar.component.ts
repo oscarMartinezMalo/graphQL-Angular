@@ -11,15 +11,29 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   templateUrl: './navigation-bar.component.html',
   styleUrls: ['./navigation-bar.component.scss'],
   animations: [
+    trigger('scaleNavbar', [
+      // ...
+      state('show', style({
+        height: '50px'
+      })),
+      state('hide', style({
+        height: '100px'
+      })),
+      transition('show <=> hide', [
+        animate('1s')
+      ])
+    ]),
     trigger('openClose', [
       // ...
       state('show', style({
         height: '50px',
         backgroundImage: 'linear-gradient(180deg, rgba(60,60,60,1) 0%, rgba(60,60,60,0.8407738095238095) 34%, rgba(60,60,60,0.6587009803921569) 72%)',
+        opacity: 1
       })),
       state('hide', style({
         height: '100px',
         backgroundColor: 'transparent',
+        opacity: 0
       })),
       transition('show <=> hide', [
         animate('1s')

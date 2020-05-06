@@ -2,6 +2,14 @@
   height: 100%;
 }
 
+.navbar-content.navbar-background {
+  z-index: 10;
+}
+
+.navbar-content.navbar-content {
+  z-index: 30;
+}
+
 .sidenav {
   // width: 200px;
 }
@@ -17,9 +25,9 @@
   background-color: transparent;
 }
 
-.toolbar-show {
-  background-color: grey;
-}
+// .toolbar-show {
+//   background-color: grey;
+// }
 
 .side-nav-custom {
   position:absolute !important;

@@ -1,6 +1,6 @@
 <mat-sidenav-container>
   <mat-sidenav-content>
-    <mat-toolbar [@openClose]="toolbarColor ? 'show' : 'hide'">
+    <mat-toolbar class="navbar-content" [@scaleNavbar]="toolbarColor ? 'show' : 'hide'">
       <div class="margin-container" fxLayout="row" fxLayoutAlign="space-between center" style="width:100%;">
         <a aria-hidden="false" [routerLink]="['/']" style="color: white;" class="logo">
         </a>
@@ -8,6 +8,7 @@
         <a mat-flat-button color="accent" [routerLink]="['/pictures/new']" style="width: 140px;">Add Picture</a>
       </div>
     </mat-toolbar>
+    <mat-toolbar class="navbar-background" [@openClose]="toolbarColor ? 'show' : 'hide'"></mat-toolbar>
  
     <div class="router-content" >
       <ng-content></ng-content>
