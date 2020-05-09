@@ -1,4 +1,4 @@
-<div class="margin-container">
+<div class="margin-container component-container">
     <div *ngIf="author">
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center start" fxLayoutGap="40px" class="author-section">
@@ -14,7 +14,7 @@
             fxLayoutGap="10px">
 
             <div *ngFor="let picture of author.pictures">
-                <app-picture-card [picture]="picture" [showProfilePic]="false"></app-picture-card>
+                <app-picture-card [picture]="picture" [showProfilePic]="false" [showEditSection]="false"></app-picture-card>
             </div>
 
         </div>

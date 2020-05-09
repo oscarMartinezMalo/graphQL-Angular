@@ -24,9 +24,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { PictureListComponent } from './picture-list/picture-list.component';
 import { PictureCardComponent } from './picture-card/picture-card.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { AuthorDetailComponent } from './author-detail/author-detail.component';
+import { ScrollIconAnimationComponent } from './scroll-icon-animation/scroll-icon-animation.component';
+import { ScrollableDirective } from './scrollable.directive';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,10 @@ import { AuthorDetailComponent } from './author-detail/author-detail.component';
     PictureListComponent,
     PictureCardComponent,
     ConfirmationDialogComponent,
-    AuthorDetailComponent
+    AuthorDetailComponent,
+    ScrollIconAnimationComponent,
+    ScrollableDirective,
+    LoadingSpinnerComponent
   ],
   entryComponents: [
     AuthorFormComponent,
@@ -63,7 +69,9 @@ import { AuthorDetailComponent } from './author-detail/author-detail.component';
     MatListModule,
     MatDialogModule
   ],
-  providers: [AuthorService],
+  providers: [
+    AuthorService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

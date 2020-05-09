@@ -27,7 +27,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
       // ...
       state('show', style({
         height: '50px',
-        backgroundImage: 'linear-gradient(180deg, rgba(60,60,60,1) 0%, rgba(60,60,60,0.8407738095238095) 34%, rgba(60,60,60,0.6587009803921569) 72%)',
+        backgroundImage: 'linear-gradient(180deg, rgba(60,60,60,1) 0%, rgba(60,60,60,0.4766281512605042) 34%, rgba(60,60,60,0.36738445378151263) 81%)',
         opacity: 1
       })),
       state('hide', style({

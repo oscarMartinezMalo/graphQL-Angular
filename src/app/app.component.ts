@@ -7,4 +7,10 @@ import { Component, HostListener } from '@angular/core';
 })
 export class AppComponent {
   title = 'graphQL-Angular';
+
+  
+
+  onActivate(event) {
+    window.scroll(0,0);
+  }
 }

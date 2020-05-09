@@ -2,21 +2,28 @@
   <div class="hero-text">
     <h1>All your images in one place</h1>
     <mat-form-field appearance="outline" style="width: 100%;" id="search-input">
-      <input matInput placeholder="Placeholder" #search   (keyup.enter)="onSearch(search.value)">
+      <input matInput placeholder="Placeholder" #search (keyup.enter)="onSearch(search.value)">
       <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="onSearch(search.value)">
         <mat-icon>search</mat-icon>
       </button>
-    </mat-form-field>  
+    </mat-form-field>
     <p>Find pictures also by author</p>
   </div>
+
+  <app-scroll-icon-animation class="scroll-animation"></app-scroll-icon-animation>
 </div>
 
-<div class="margin-container">  
-  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="space-around center" class="list-container"
-    fxLayoutGap="10px">
+
+<div class="margin-container">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="space-around center" class="list-container" fxLayoutGap="10px"
+  scrollable (scrollPosition)="onScrollHandler($event)"  style="overflow-y:scroll; height: 100vh;">
     <div *ngFor="let picture of filterPictures">
-      <!-- <div *ngFor="let picture of pictures$ | async"> -->
-      <app-picture-card [picture] ="picture"></app-picture-card>
-    </div>  
+      <app-picture-card [picture]="picture"></app-picture-card>
+    </div>
+
+
+    <p *ngIf="pictureService.done$ | async">No more Pictures</p>
+    <loading-spinner *ngIf="pictureService.loading$ | async"></loading-spinner>
   </div>
+
 </div>

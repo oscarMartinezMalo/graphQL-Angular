@@ -30,14 +30,12 @@ export class PictureCardComponent implements OnInit {
       width: '350px',
       data: "Do you confirm the deletion of this Picture?"
     });
-
+ 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.pictureService.deletePicture(pictureId);
       }
     });
-
-
   }
 
   onUpdate(pictureId: string) {
@@ -48,7 +46,6 @@ export class PictureCardComponent implements OnInit {
     if (this.picture['author']){
       return `${this.picture['author'].name}  ${this.picture['author'].lastName}`;
     }
-
 
     if (this.author)
       return `${this.author.name} ${this.author.lastName}`;
