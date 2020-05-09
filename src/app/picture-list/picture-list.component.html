@@ -1,29 +1,32 @@
-<div class="hero-image">
-  <div class="hero-text">
-    <h1>All your images in one place</h1>
-    <mat-form-field appearance="outline" style="width: 100%;" id="search-input">
-      <input matInput placeholder="Placeholder" #search (keyup.enter)="onSearch(search.value)">
-      <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="onSearch(search.value)">
-        <mat-icon>search</mat-icon>
-      </button>
-    </mat-form-field>
-    <p>Find pictures also by author</p>
-  </div>
+<div>
+  <div fxLayout="row wrap" fxLayout="column" id="wrapper" scrollable (scrollPosition)="onScrollHandler($event)"
+    style="overflow-y:scroll; height: 100vh;">
 
-  <app-scroll-icon-animation class="scroll-animation"></app-scroll-icon-animation>
-</div>
-
-
-<div class="margin-container">
-  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="space-around center" class="list-container" fxLayoutGap="10px"
-  scrollable (scrollPosition)="onScrollHandler($event)"  style="overflow-y:scroll; height: 100vh;">
-    <div *ngFor="let picture of filterPictures">
-      <app-picture-card [picture]="picture"></app-picture-card>
+    <!-- Home Page -->
+    <div class="hero-image">
+      <div class="hero-text">
+        <h1>All your images in one place</h1>
+        <mat-form-field appearance="outline" style="width: 100%;" id="search-input">
+          <input matInput placeholder="Placeholder" #search (keyup.enter)="onSearch(search.value)">
+          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="onSearch(search.value)">
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+        <p>Find pictures also by author</p>
+      </div>
+      <app-scroll-icon-animation class="scroll-animation"></app-scroll-icon-animation>
     </div>
 
+    <!-- List Of Pictures -->
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="space-around center" class="list-container"
+      fxLayoutGap="10px">
+      <div *ngFor="let picture of filterPictures">
+        <app-picture-card [picture]="picture"></app-picture-card>
+      </div>
+    </div>
 
-    <p *ngIf="pictureService.done$ | async">No more Pictures</p>
     <loading-spinner *ngIf="pictureService.loading$ | async"></loading-spinner>
+    <mat-toolbar *ngIf="pictureService.done$ | async"color="primary" style="justify-content: center;">No more Pictures</mat-toolbar>
   </div>
 
 </div>
