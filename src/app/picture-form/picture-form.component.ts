@@ -69,12 +69,15 @@ export class PictureFormComponent implements OnInit {
       const authorId = this.pictureForm.get('authorId').value;
 
       if (this.idUrlparameter) { // Edit
-        this.pictureService.updatePicture(this.idUrlparameter, title, imageUrl, genre, authorId);
+        this.pictureService.updatePicture(this.idUrlparameter, title, imageUrl, genre, authorId).subscribe( ({ data }) =>{
+          this.router.navigate(['/']);
+        }, (error) => {
+            console.log('There was an error sending the query', error);
+          });
       } else {
         this.pictureService.createPicture(title, imageUrl, genre, authorId);
       }
 
-      this.router.navigate(['/']);
     }
   }
 

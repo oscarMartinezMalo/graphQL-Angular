@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { PictureService } from '../services/picture.service';
 import { Picture } from '../models/picture.model';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { take } from 'rxjs/operators';
   templateUrl: './picture-list.component.html',
   styleUrls: ['./picture-list.component.scss']
 })
-export class PictureListComponent implements OnInit {
+export class PictureListComponent implements OnInit, OnDestroy {
   pictures$;
   filterPictures: Picture[];
   pictures: Picture[];
@@ -21,10 +21,13 @@ export class PictureListComponent implements OnInit {
     private vps: ViewportScroller
   ) { }
 
+  ngOnDestroy(): void {
+    this.pictureService.done$.next(false);
+  }
+
   ngOnInit(): void {
     this.pictures$ = this.pictureService.pictures$.subscribe(picts => this.pictures = this.filterPictures = picts as Picture[]);
-    // this.pictureService.getPictures();
-    this.pictureService.getInitialPicturesInfiniteScroll();
+    this.pictureService.getPicturesInfiniteScroll(0);
   }
 
   onSearch(search) {

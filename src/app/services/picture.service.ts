@@ -4,6 +4,7 @@ import { Apollo } from 'apollo-angular';
 import { map, take } from 'rxjs/operators';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { Picture } from '../models/picture.model';
+import { GET_PICTURES_OFFSET, GET_PICTURES_BY_ID, CREATE_PICTURE, UPDATE_PICTURE, DELETE_PICTURE } from './apolloQueries/pictures.queries';
 
 @Injectable({
   providedIn: 'root'
@@ -49,24 +50,22 @@ export class PictureService {
   //     });
   // }
 
-  getPicturesOffset(offsetValue?: number) {
-    
-    const offset =(offsetValue === 0) ? 0 : this.pictures.length;
+  //  private getPicturesOffset(offsetValue?: number) {
+  //     const offset = (offsetValue === 0) ? 0 : this.pictures.length;
+  //     return this.apollo
+  //       .watchQuery({
+  //         query: GET_PICTURES_OFFSET,
+  //         variables: { offSet: offset },
+  //       })
+  //       .valueChanges.
+  //       pipe(map(result => result.data && result.data['picturesOffSet']));
+  //   }
 
-    const GET_PICTURES_OFFSET = gql`
-    query submitRepository($offSet: Int!) {
-      picturesOffSet(offSet: $offSet) {
-        _id,
-        title,
-        imageUrl,
-        authorId,
-        author {
-          name,
-          lastName,
-          facePictureUrl
-         }
-      }
-    }`;
+  public async getPicturesInfiniteScroll(offsetValue?: number) {
+    const offset = (offsetValue === 0) ? 0 : this.pictures.length;
+
+    if (this.done$.value || this.loading$.value) { return }
+    this.loading$.next(true);
 
     return this.apollo
       .watchQuery({
@@ -74,60 +73,21 @@ export class PictureService {
         variables: { offSet: offset },
       })
       .valueChanges.
-      pipe(map(result => result.data && result.data['picturesOffSet']));
-  }
+      pipe(map(result => result.data && result.data['picturesOffSet'])).pipe(take(1)).subscribe(resp => {
+        // no more data mark as done
+        if (!resp.length) {
+          this.done$.next(true);
+        }
 
-  public async getPicturesInfiniteScroll() {
-    if (this.done$.value || this.loading$.value) { return }
+        // update source with new value, done loading
+        (offsetValue === 0) ? this.pictures = resp : this.pictures.push(...resp);
 
-    // loading
-    this.loading$.next(true);
-
-    // call to get the data
-    this.getPicturesOffset().pipe(take(1)).subscribe(resp => {
-      // no more data mark as done
-      if (!resp.length) {
-        this.done$.next(true);
-      }
-      // update source with new value, done loading
-      this.pictures.push(...resp);
-      this.picturesSubject$.next(this.pictures);
-
-      this.loading$.next(false);
-    });
-
-  }
-
-  public getInitialPicturesInfiniteScroll() {
-    // loading
-    this.loading$.next(true);
-
-    // call to get the data
-    this.getPicturesOffset(0).pipe(take(1)).subscribe(resp => {
-      // no more data mark as done
-      if (!resp.length) {
-        this.done$.next(true);
-      }
-      // update source with new value, done loading
-      this.pictures = resp;
-      this.picturesSubject$.next(this.pictures);
-
-      this.loading$.next(false);
-    });
+        this.picturesSubject$.next(this.pictures);
+        this.loading$.next(false);
+      });
   }
 
   getPictureById(id: string) {
-    const GET_PICTURES_BY_ID = gql`
-    query submitRepository($id: String!) {
-     picture(id: $id) {
-       _id,
-        title,
-        imageUrl,
-        genre,
-        authorId
-      }
-    }`;
-
     return this.apollo
       .watchQuery({
         query: GET_PICTURES_BY_ID,
@@ -137,23 +97,6 @@ export class PictureService {
   }
 
   createPicture(title: string, imageUrl: string, genre: string, authorId: string) {
-    const CREATE_PICTURE = gql`
-    mutation submitRepository ($title: String!, $imageUrl: String!, $genre: String!, $authorId: String!) {
-      addPicture(title: $title, imageUrl: $imageUrl, genre: $genre, authorId: $authorId) {
-        _id,
-        title,
-        imageUrl,
-        genre,
-        authorId,
-        author{
-          name,
-          lastName,
-          facePictureUrl
-        }
-      }
-    }
-    `;
-
     this.apollo.mutate({
       mutation: CREATE_PICTURE,
       variables: { title, imageUrl, genre, authorId }
@@ -166,42 +109,18 @@ export class PictureService {
   }
 
   updatePicture(id: string, title: string, imageUrl: string, genre: string, authorId: string) {
-    const UPDATE_PICTURE = gql`
-    mutation submitRepository ($id: String!, $title: String!, $imageUrl: String!, $genre: String!, $authorId: String!) {
-      updatePicture(id: $id, title: $title, imageUrl: $imageUrl, genre: $genre, authorId: $authorId) {
-        _id,
-        title,
-        imageUrl,
-        genre,
-        authorId,
-        author{
-          name,
-          lastName
-        }
-      }
-    }
-    `;
-
-    this.apollo.mutate({
+    return this.apollo.mutate({
       mutation: UPDATE_PICTURE,
-      variables: { id, title, imageUrl, genre, authorId }
-    }).subscribe(({ data }) => {
-      // this.pictures.push(data['addPicture']);
-      // this.picturesSubject$.next(this.pictures);
-    }, (error) => {
-      console.log('There was an error sending the query', error);
-    });
+      variables: { id, title, imageUrl, genre, authorId },
+      // refetchQueries: [{ query: GET_PICTURES_OFFSET, variables: { offSet: this.pictures.length } }]
+    }).pipe(map(resp => {
+      // Reset the catch so the Pictures List can be updated
+      this.apollo.getClient().resetStore();
+      return resp;
+    }))
   }
 
   deletePicture(id: string) {
-    const DELETE_PICTURE = gql`
-    mutation submitRepository ($id: String!)  {
-      deletePicture(id: $id){
-        _id
-      }
-    }
-    `;
-
     this.apollo.mutate({
       mutation: DELETE_PICTURE,
       variables: { id }

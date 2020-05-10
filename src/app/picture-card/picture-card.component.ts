@@ -38,10 +38,6 @@ export class PictureCardComponent implements OnInit {
     });
   }
 
-  onUpdate(pictureId: string) {
-    this.pictureService.deletePicture(pictureId);
-  }
-
   getAuthorFullName() {
     if (this.picture['author']){
       return `${this.picture['author'].name}  ${this.picture['author'].lastName}`;
