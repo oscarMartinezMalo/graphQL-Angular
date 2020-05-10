@@ -22,10 +22,9 @@ export class PictureListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.pictures$ = this.pictureService.pictures$.subscribe(picts =>
-      this.pictures = this.filterPictures = picts as Picture[]);
+    this.pictures$ = this.pictureService.pictures$.subscribe(picts => this.pictures = this.filterPictures = picts as Picture[]);
     // this.pictureService.getPictures();
-        this.pictureService.getPicturesInfiniteScroll();
+    this.pictureService.getInitialPicturesInfiniteScroll();
   }
 
   onSearch(search) {
@@ -36,7 +35,7 @@ export class PictureListComponent implements OnInit {
 
   onScrollHandler(e) {
     if (e === 'bottom') {
-        this.pictureService.getPicturesInfiniteScroll();
+      this.pictureService.getPicturesInfiniteScroll();
     }
   }
 

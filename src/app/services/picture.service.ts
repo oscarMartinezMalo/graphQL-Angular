@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { Picture } from '../models/picture.model';
 
@@ -21,36 +21,37 @@ export class PictureService {
     private apollo: Apollo
   ) { }
 
-  getPictures() {
-    const GET_PICTURES = gql`
-    {
-      pictures{
-        _id,
-        title,
-        imageUrl,
-        authorId,
-        author {
-          name,
-          lastName,
-          facePictureUrl
-         }
-      }
-    }`;
+  // getPictures() {
+  //   const GET_PICTURES = gql`
+  //   {
+  //     pictures{
+  //       _id,
+  //       title,
+  //       imageUrl,
+  //       authorId,
+  //       author {
+  //         name,
+  //         lastName,
+  //         facePictureUrl
+  //        }
+  //     }
+  //   }`;
 
-    this.apollo
-      .watchQuery({
-        query: GET_PICTURES,
-      })
-      .valueChanges.pipe(map(result => result.data && result.data['pictures'])).
-      subscribe(resp => {
-        console.log(resp);
-        this.pictures = resp;
-        this.picturesSubject$.next(this.pictures);
-      });
-  }
+  //   this.apollo
+  //     .watchQuery({
+  //       query: GET_PICTURES,
+  //     })
+  //     .valueChanges.pipe(map(result => result.data && result.data['pictures'])).
+  //     subscribe(resp => {
+  //       console.log(resp);
+  //       this.pictures = resp;
+  //       this.picturesSubject$.next(this.pictures);
+  //     });
+  // }
 
-  getPicturesOffset() {
-    const offset = this.pictures.length;
+  getPicturesOffset(offsetValue?: number) {
+    
+    const offset =(offsetValue === 0) ? 0 : this.pictures.length;
 
     const GET_PICTURES_OFFSET = gql`
     query submitRepository($offSet: Int!) {
@@ -83,20 +84,36 @@ export class PictureService {
     this.loading$.next(true);
 
     // call to get the data
-    this.getPicturesOffset().subscribe(resp => {
-
+    this.getPicturesOffset().pipe(take(1)).subscribe(resp => {
       // no more data mark as done
       if (!resp.length) {
         this.done$.next(true);
-      } 
-
+      }
       // update source with new value, done loading
       this.pictures.push(...resp);
       this.picturesSubject$.next(this.pictures);
 
-      this.loading$.next(false);  
+      this.loading$.next(false);
     });
 
+  }
+
+  public getInitialPicturesInfiniteScroll() {
+    // loading
+    this.loading$.next(true);
+
+    // call to get the data
+    this.getPicturesOffset(0).pipe(take(1)).subscribe(resp => {
+      // no more data mark as done
+      if (!resp.length) {
+        this.done$.next(true);
+      }
+      // update source with new value, done loading
+      this.pictures = resp;
+      this.picturesSubject$.next(this.pictures);
+
+      this.loading$.next(false);
+    });
   }
 
   getPictureById(id: string) {

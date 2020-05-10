@@ -6,22 +6,23 @@
     <div class="hero-image">
       <div class="hero-text">
         <h1>All your images in one place</h1>
-        <mat-form-field appearance="outline" style="width: 100%;" id="search-input">
+        <!-- <mat-form-field appearance="outline" style="width: 100%;">
           <input matInput placeholder="Placeholder" #search (keyup.enter)="onSearch(search.value)">
           <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="onSearch(search.value)">
             <mat-icon>search</mat-icon>
           </button>
-        </mat-form-field>
-        <p>Find pictures also by author</p>
+        </mat-form-field> -->
+        <p>Find the picture you were looking for</p>
       </div>
       <app-scroll-icon-animation class="scroll-animation"></app-scroll-icon-animation>
     </div>
 
     <!-- List Of Pictures -->
-    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="space-around center" class="list-container"
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="space-around center" class="list-container margin-container"
       fxLayoutGap="10px">
       <div *ngFor="let picture of filterPictures">
-        <app-picture-card [picture]="picture"></app-picture-card>
+        <!-- Not allow edit or erase if author is Oscar Martinez Malo -->
+        <app-picture-card [picture]="picture" [showEditSection]="(picture.author.lastName === 'Martinez Malo') ? false : true"></app-picture-card>
       </div>
     </div>
 
