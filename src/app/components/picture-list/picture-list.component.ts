@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { PictureService } from '../services/picture.service';
-import { Picture } from '../models/picture.model';
+import { PictureService } from '../../services/picture.service';
+import { Picture } from '../../models/picture.model';
 import { Router } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 import { take } from 'rxjs/operators';

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { AuthorService } from '../services/author.service';
-import { PictureService } from '../services/picture.service';
+import { AuthorService } from '../../services/author.service';
+import { PictureService } from '../../services/picture.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Author } from '../models/author.model';
+import { Author } from '../../models/author.model';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AuthorFormComponent } from '../author-form/author-form.component';
 

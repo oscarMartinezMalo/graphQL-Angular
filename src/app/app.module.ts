@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PictureFormComponent } from './picture-form/picture-form.component';
+import { PictureFormComponent } from './components/picture-form/picture-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
@@ -13,23 +13,23 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { AuthorFormComponent } from './author-form/author-form.component';
+import { AuthorFormComponent } from './components/author-form/author-form.component';
 import { AuthorService } from './services/author.service';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
-import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { PictureListComponent } from './picture-list/picture-list.component';
-import { PictureCardComponent } from './picture-card/picture-card.component';
+import { PictureListComponent } from './components/picture-list/picture-list.component';
+import { PictureCardComponent } from './components/picture-card/picture-card.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
-import { AuthorDetailComponent } from './author-detail/author-detail.component';
-import { ScrollIconAnimationComponent } from './scroll-icon-animation/scroll-icon-animation.component';
-import { ScrollableDirective } from './scrollable.directive';
-import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { AuthorDetailComponent } from './components/author-detail/author-detail.component';
+import { ScrollIconAnimationComponent } from './components/scroll-icon-animation/scroll-icon-animation.component';
+import { ScrollableDirective } from './directives/scrollable.directive';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [

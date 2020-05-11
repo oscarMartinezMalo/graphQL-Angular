@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, AfterViewInit, AfterContentInit } from '@angular/core';
-import { PictureService } from '../services/picture.service';
-import { Picture } from '../models/picture.model';
-import { AuthorService } from '../services/author.service';
-import { Author } from '../models/author.model';
+import { PictureService } from '../../services/picture.service';
+import { Picture } from '../../models/picture.model';
+import { AuthorService } from '../../services/author.service';
+import { Author } from '../../models/author.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 

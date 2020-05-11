@@ -4,7 +4,7 @@
 
 .hero-image {
   // background-image:  url('../../assets/hero-image.jpg');
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../assets/hero-image.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../../assets/hero-image.jpg');
   height: 100%;
   background-attachment: fixed;
   background-position: left;
@@ -51,6 +51,6 @@
 @media only screen and (max-width: 600px) {
   .hero-image {
     // height: 100%;
-    background-attachment: initial;
+    background-attachment: initial;  // Iphone does render properly background-attachment: fixed;
   }
 }

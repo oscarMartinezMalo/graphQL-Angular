@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PictureListComponent } from './picture-list/picture-list.component';
-import { PictureFormComponent } from './picture-form/picture-form.component';
-import { AuthorDetailComponent } from './author-detail/author-detail.component';
+import { PictureListComponent } from './components/picture-list/picture-list.component';
+import { PictureFormComponent } from './components/picture-form/picture-form.component';
+import { AuthorDetailComponent } from './components/author-detail/author-detail.component';
 
 
 const routes: Routes = [

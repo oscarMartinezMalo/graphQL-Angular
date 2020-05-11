@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { AuthorService } from '../services/author.service';
+import { AuthorService } from '../../services/author.service';
 
 @Component({
   selector: 'app-author-form',

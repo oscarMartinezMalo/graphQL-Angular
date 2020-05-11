@@ -4,6 +4,7 @@ import { Apollo } from 'apollo-angular';
 import { map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Author } from '../models/author.model';
+import { GET_AUTHORS, CREATE_AUTHOR, GET_PICTURES_BY_author_ID } from './apolloQueries/author.queries';
 
 @Injectable({
   providedIn: 'root'
@@ -20,15 +21,7 @@ export class AuthorService {
 
   getAuthors() {
 
-    const GET_AUTHORS = gql`
-    {
-      authors{
-        _id,
-        name,
-        lastName,
-        facePictureUrl
-      }
-    }`;
+
 
     this.apollo
       .watchQuery({
@@ -42,17 +35,6 @@ export class AuthorService {
   }
 
   createAuthor(name: string, lastName: string, facePictureUrl: string) {
-    const CREATE_AUTHOR = gql`
-    mutation submitRepository ($name: String!, $lastName: String!, $facePictureUrl: String!) {
-      addAuthor(name: $name, lastName: $lastName, facePictureUrl: $facePictureUrl) {
-        _id,
-        name,
-        lastName,
-        facePictureUrl
-      }
-    }
-    `;
-
     this.apollo.mutate({
       mutation: CREATE_AUTHOR,
       variables: { name, lastName, facePictureUrl }
@@ -65,19 +47,6 @@ export class AuthorService {
   }
 
   getPicturesByAuthorId(id: string) {
-    const GET_PICTURES_BY_author_ID = gql`
-    query submitRepository($id: String!) {
-      picturesByAuthor(id: $id) {
-        name,
-        lastName,
-        facePictureUrl,
-        pictures{
-          title,
-          imageUrl
-        }
-      }
-    }`;
-
     return this.apollo
       .watchQuery({
         query: GET_PICTURES_BY_author_ID,
